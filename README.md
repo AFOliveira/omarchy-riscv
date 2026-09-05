@@ -68,6 +68,6 @@ The viewer listens on workstation loopback and reaches the board through SSH. Ve
 
 ## Demonstrated scope
 
-The [evidence directory](evidence/) records physical boot confirmation, native compilation and editor checks. The desktop passed remote keyboard input, lock/unlock, Chromium page rendering and LazyVim file opening. The published package layout also passed a native LuaJIT build on the physical host.
+The [evidence directory](evidence/) records physical boot confirmation, native compilation and editor checks. The desktop passed remote keyboard input, lock/unlock, Chromium page rendering and LazyVim file opening. A fresh recursive source checkout, including the full vendor kernel, passed all four source-pin checks. The umbrella command `native-packages luajit` also built the package on the physical Arch host and passed the Lua equality regression. These checks are recorded in `source-checkout-validation.log`, `source-verification.txt` and `umbrella-native-package-check.log` under `evidence/`. The full distribution and kernel build stages were tested during bring-up; they were not rebuilt again merely to publish these source pointers.
 
 Unfinished areas include the rebuilt kernel on hardware, audio/camera, Btrfs snapshots, Limine installation, optional x86/proprietary applications, general installation on another board, and the normal upstream Omarchy upgrade/migration path. The port's updater holds its tested Omarchy and compositor/runtime baseline.

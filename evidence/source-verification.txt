@@ -1,0 +1,5 @@
+PIN_OK omarchy 9cf712d75830f4ccb62a349d1c64baee65a7cfee
+PIN_OK packages ff0dcb86d24d876f4e237a7852ef146e8949cdee
+PIN_OK kernel 4158237f35b8fd62ba198c1627e5a66e5a34c50f
+PIN_OK noVNC bef170ebf149cffa0d1c61eb0e4a77a737391f35
+Source pins verified. Arch dependency repositories remain rolling.

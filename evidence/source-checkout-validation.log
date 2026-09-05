@@ -1,0 +1,21 @@
+Submodule 'kernel' (https://github.com/spacemit-com/linux-6.18.git) registered for path 'kernel'
+Submodule 'noVNC' (https://github.com/novnc/noVNC.git) registered for path 'noVNC'
+Submodule 'omarchy' (https://github.com/AFOliveira/omarchy.git) registered for path 'omarchy'
+Cloning into '/home/afonso/k3-builds/omarchy-riscv-publish-check/kernel'...
+Cloning into '/home/afonso/k3-builds/omarchy-riscv-publish-check/noVNC'...
+Cloning into '/home/afonso/k3-builds/omarchy-riscv-publish-check/omarchy'...
+Submodule path 'kernel': checked out '4158237f35b8fd62ba198c1627e5a66e5a34c50f'
+Submodule path 'noVNC': checked out 'bef170ebf149cffa0d1c61eb0e4a77a737391f35'
+From https://github.com/AFOliveira/omarchy
+ * branch            9cf712d75830f4ccb62a349d1c64baee65a7cfee -> FETCH_HEAD
+Submodule path 'omarchy': checked out '9cf712d75830f4ccb62a349d1c64baee65a7cfee'
+Submodule 'k3-packages' (https://github.com/AFOliveira/omarchy-pkgs.git) registered for path 'omarchy/ports/k3/packages'
+Cloning into '/home/afonso/k3-builds/omarchy-riscv-publish-check/omarchy/ports/k3/packages'...
+From https://github.com/AFOliveira/omarchy-pkgs
+ * branch            ff0dcb86d24d876f4e237a7852ef146e8949cdee -> FETCH_HEAD
+Submodule path 'omarchy/ports/k3/packages': checked out 'ff0dcb86d24d876f4e237a7852ef146e8949cdee'
+PIN_OK omarchy 9cf712d75830f4ccb62a349d1c64baee65a7cfee
+PIN_OK packages ff0dcb86d24d876f4e237a7852ef146e8949cdee
+PIN_OK kernel 4158237f35b8fd62ba198c1627e5a66e5a34c50f
+PIN_OK noVNC bef170ebf149cffa0d1c61eb0e4a77a737391f35
+Source pins verified. Arch dependency repositories remain rolling.
