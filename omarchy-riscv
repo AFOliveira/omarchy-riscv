@@ -1,0 +1,78 @@
+#!/bin/bash
+# Build and inspect the pinned Omarchy K3 source assembly.
+set -euo pipefail
+root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+port="$root/omarchy/ports/k3"
+action=${1:-help}
+if (( $# > 0 )); then
+  shift
+fi
+
+case $action in
+  bootstrap|verify)
+    exec python3 "$root/tools/sources.py" "$action" "$@"
+    ;;
+  doctor)
+    for command in git python3 curl docker qemu-system-riscv64; do
+      if command -v "$command" >/dev/null; then
+        printf 'FOUND %s\n' "$command"
+      else
+        printf 'MISSING %s\n' "$command"
+      fi
+    done
+    df -h "$root"
+    printf 'Allow at least 30 GiB free for source checkouts, kernel builds and rootfs tests.\n'
+    ;;
+  build|build-kernel|build-qemu|smoke)
+    python3 "$root/tools/sources.py" verify
+    docker build -t omarchy-k3-builder:trixie "$port"
+    export K3_KERNEL_DIR="$root/kernel"
+    if [[ $action == "build" || $action == "smoke" ]]; then
+      "$port/smoke-rv64gc.sh"
+      "$port/smoke-arch.sh"
+    fi
+    if [[ $action == "build" || $action == "build-kernel" ]]; then
+      "$port/build-kernel.sh"
+      "$port/boot-smoke.sh"
+    fi
+    if [[ $action == "build" || $action == "build-qemu" ]]; then
+      "$port/build-qemu-kernel.sh"
+    fi
+    ;;
+  native-packages)
+    python3 "$root/tools/sources.py" verify --without-kernel
+    exec "$port/build-packages.sh" "$@"
+    ;;
+  viewer-setup)
+    python3 -m venv "$root/build/viewer-venv"
+    "$root/build/viewer-venv/bin/pip" install websockify==0.13.0
+    ;;
+  viewer)
+    export K3_NOVNC_DIR="$root/noVNC"
+    export K3_WEBSOCKIFY="$root/build/viewer-venv/bin/websockify"
+    exec "$port/start-local-viewer.sh"
+    ;;
+  help|-h|--help)
+    cat <<'EOF'
+Usage: ./omarchy-riscv COMMAND
+
+  bootstrap [--without-kernel]  Check out pinned sources and nested packages
+  verify [--without-kernel]     Check source commits and clean worktrees
+  doctor                       Show workstation prerequisites and disk space
+  build                        RV64GC/rootfs tests, K3 kernel and QEMU kernel
+  build-kernel                 Build the K3 kernel, DTBs and modules; QEMU smoke
+  build-qemu                   Build the separate generic QEMU test kernel
+  smoke                        Run the RV64GC binary and Arch rootfs checks
+  native-packages [PACKAGE...] Build/install the native profile on staged Arch
+  viewer-setup                 Prepare the workstation's WebSocket proxy
+  viewer                       Open the existing board through local SSH config
+
+See README.md and docs/board-setup.md for board provisioning and recovery.
+Kernel build commands produce test artifacts; installing them is a separate step.
+EOF
+    ;;
+  *)
+    printf 'Unknown command: %s\n' "$action" >&2
+    exit 2
+    ;;
+esac

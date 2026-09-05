@@ -1,0 +1,4 @@
+LUA_EQUALITY_STRESS_OK	LuaJIT 2.1.1786451769
+mpv v0.41.0 Copyright © 2000-2025 mpv/MPlayer/mplayer2 projects
+ built on Aug 29 2026 22:43:28
+libplacebo version: v7.360.1

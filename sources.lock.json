@@ -1,0 +1,36 @@
+{
+  "format": 1,
+  "repositories": [
+    {
+      "name": "omarchy",
+      "path": "omarchy",
+      "url": "https://github.com/AFOliveira/omarchy.git",
+      "commit": "9cf712d75830f4ccb62a349d1c64baee65a7cfee"
+    },
+    {
+      "name": "packages",
+      "path": "omarchy/ports/k3/packages",
+      "url": "https://github.com/AFOliveira/omarchy-pkgs.git",
+      "commit": "ff0dcb86d24d876f4e237a7852ef146e8949cdee"
+    },
+    {
+      "name": "kernel",
+      "path": "kernel",
+      "url": "https://github.com/spacemit-com/linux-6.18.git",
+      "commit": "4158237f35b8fd62ba198c1627e5a66e5a34c50f"
+    },
+    {
+      "name": "noVNC",
+      "path": "noVNC",
+      "url": "https://github.com/novnc/noVNC.git",
+      "commit": "bef170ebf149cffa0d1c61eb0e4a77a737391f35"
+    }
+  ],
+  "arch_rootfs": {
+    "url": "https://archriscv.felixc.at/images/archriscv-2026-08-27.tar.zst",
+    "filename": "archriscv-2026-08-27.tar.zst",
+    "sha256": "a2045c8b62232db2f60d8e4db610dbb5d9e12856dab0ba08634ad3d7cb7ad498"
+  },
+  "running_kernel": "6.18.3-generic",
+  "build_defconfig": "k3_bianbu_defconfig"
+}

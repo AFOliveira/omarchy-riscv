@@ -1,0 +1,9 @@
+[submodule "omarchy"]
+  path = omarchy
+  url = https://github.com/AFOliveira/omarchy.git
+[submodule "kernel"]
+  path = kernel
+  url = https://github.com/spacemit-com/linux-6.18.git
+[submodule "noVNC"]
+  path = noVNC
+  url = https://github.com/novnc/noVNC.git
