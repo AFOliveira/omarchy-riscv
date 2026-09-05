@@ -40,7 +40,12 @@ case $action in
     fi
     ;;
   native-packages)
-    python3 "$root/tools/sources.py" verify --without-kernel
+    if (( EUID == 0 )); then
+      # Check user-owned Git trees as their owner before the privileged install.
+      runuser -u "$(stat -c %U "$root")" -- python3 "$root/tools/sources.py" verify --without-kernel
+    else
+      python3 "$root/tools/sources.py" verify --without-kernel
+    fi
     exec "$port/build-packages.sh" "$@"
     ;;
   viewer-setup)
