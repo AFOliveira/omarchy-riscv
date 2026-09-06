@@ -1,8 +1,25 @@
 # Omarchy RISC-V / SpacemiT K3
 
-Private integration workspace for the tested K3 port. This repository pins the source trees needed to build the port and records how the existing board was provisioned. Modified code lives in AFOliveira's public forks; unchanged dependencies retain their upstream URLs.
+Integration workspace for the tested K3 port. This repository pins the source trees needed to build the port and records how the existing board was provisioned. Modified code lives in AFOliveira's public forks; unchanged dependencies retain their upstream URLs.
 
 The core Omarchy desktop has booted on the physical K3 and survived a normal reboot. Arch owns PID 1, networking and the GPU-backed Hyprland session. The running kernel is SpacemiT's unchanged **6.18.3-generic**. The separately rebuilt kernel has **not** successfully booted on the physical board.
+
+## Installed versions
+
+Checked directly on the physical host on 2026-09-06:
+
+| Component | Installed baseline |
+| --- | --- |
+| Kernel | SpacemiT/Bianbu `6.18.3-generic`, with matching vendor modules, firmware and graphics libraries |
+| Arch | Community Arch Linux RISC-V, rolling release; staged from the `2026-08-27` rootfs and subsequently updated with pacman |
+| Omarchy | Upstream tag `v3.8.4` plus the K3 port; the tag's version file reports `3.8.3` |
+| Hyprland | `0.55.4-2.3` |
+| systemd | `261.2-1` |
+| glibc | `2.44+r24+g16be1518495f-1.1` |
+| GCC | `16.2.1+r23+gd564253eb6c8-1` |
+| LuaJIT | `2.1.1786451769-1.1` |
+
+The Arch rootfs date identifies the starting archive, not a fixed Arch release or an immutable package snapshot. The kernel submodule records the source used for the separate kernel build; it does not establish the provenance of the preinstalled vendor kernel binary.
 
 ## Pinned source layout
 
